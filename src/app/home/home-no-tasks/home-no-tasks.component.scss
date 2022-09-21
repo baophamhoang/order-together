@@ -1,0 +1,13 @@
+.home-no-tasks__btn {
+  display: block;
+  position: absolute;
+  margin-top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  color: rgba(141, 114, 188, 0.8);
+  &:hover {
+    margin-top: 55px;
+    color: rebeccapurple;
+  }
+}

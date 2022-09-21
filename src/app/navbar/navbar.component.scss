@@ -1,0 +1,24 @@
+.navbar-list {
+  background-color: rgb(141 114 188 / 80%);
+
+  li {
+    a {
+      font-size: 1.5rem;
+      color: white;
+      display: block;
+      // color: white;
+      text-align: center;
+      padding: 16px;
+      text-decoration: none;
+    }
+    &:hover a {
+      background-color: rgb(131, 131, 184);
+    }
+  }
+}
+
+.navbar-logo {
+  font-weight: 600;
+  font-style: italic;
+  padding-right: 40px !important;
+}

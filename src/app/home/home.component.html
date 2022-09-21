@@ -1,0 +1,84 @@
+<div class="home">
+  <div
+    *ngIf="isAddOrderInitial; else no_orders"
+    [ngClass]="'home-content ' + panelMove"
+  >
+    <div class="">
+      <div *ngIf="!isCalculated; else onCalculated">
+        <div *ngFor="let order of orderArr">
+          <strong>{{ order.clientName }}</strong> đã ăn
+          <strong>{{ order.dishAmount }} {{ order.dishName }}</strong> với đơn
+          giá
+          <strong>{{ order.dishPrice }}</strong>
+        </div>
+        <!-- <app-orders-table [ordersSource]="orderArr"></app-orders-table> -->
+        <div *ngFor="let item of dummyArr; let i = index">
+          <app-home-with-tasks [formNumber]="i"></app-home-with-tasks>
+        </div>
+        <div>
+          <!-- <button
+            class="btn btn-primary"
+            (click)="addNewForm()"
+            (mouseover)="isAddBtnHover = true"
+            (mouseout)="isAddBtnHover = false"
+          > -->
+          <button class="btn btn-primary" (click)="addNewForm()">
+            <i
+              *ngIf="isAddBtnHover"
+              [ngClass]="['fas', 'fa-plus', 'fa-spin']"
+            ></i>
+            <i *ngIf="!isAddBtnHover" [ngClass]="['fas', 'fa-plus']"></i>
+            Thêm order nè
+          </button>
+        </div>
+        <div class="panel-conclusion">
+          <label for="realTotal">Tổng tiền thực tế:</label>
+          <input
+            id="realTotal"
+            type="number"
+            [formControl]="realTotal"
+            class="form-control"
+            style="display: inline-block"
+          />
+
+          <div style="margin-top: 10px">
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="getCalculation()"
+            >
+              <i class="fas fa-calculator"></i>
+              Tính tiền
+            </button>
+            <button type="button" class="btn btn-secondary" (click)="restart()">
+              <i class="fas fa-rotate-left"></i>
+              Làm lại nè
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #onCalculated>
+      Tiền phải trả nè:
+      <ul *ngFor="let item of finalPriceArr">
+        {{
+          item.clientName
+        }}
+        -
+        {{
+          item.dishName
+        }}:
+        <strong
+          >{{ item.tienphaitra }}vnđ (đã giảm
+          {{ item.dishPrice - item.tienphaitra }})</strong
+        >
+      </ul>
+      <button class="btn btn-primary" (click)="back()">Back</button>
+    </ng-template>
+  </div>
+  <ng-template #no_orders>
+    <app-home-no-tasks
+      (addOrderInitialEvent)="onAddOrderInitial($event)"
+    ></app-home-no-tasks>
+  </ng-template>
+</div>

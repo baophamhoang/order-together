@@ -1,0 +1,55 @@
+<form class="order-form container" [formGroup]="profileForm">
+  <div class="row">
+    <div class="order-form-field form-group col-md-3 col-6">
+      <input
+        class="form-control"
+        id="clientName"
+        placeholder=" "
+        type="text"
+        formControlName="clientName"
+      />
+      <label for="clientName">Tên gì nè</label>
+    </div>
+
+    <div class="order-form-field form-group col-md-3 col-6">
+      <input
+        class="form-control"
+        id="dishName"
+        placeholder=" "
+        type="text"
+        formControlName="dishName"
+      />
+      <label for="dishName">Món</label>
+    </div>
+
+    <div class="order-form-field form-group col-md-2 col-4">
+      <input
+        class="form-control"
+        id="dishPrice"
+        placeholder=" "
+        type="number"
+        formControlName="dishPrice"
+      />
+      <label for="dishPrice">Giá</label>
+    </div>
+
+    <div class="order-form-field form-group col-md-2 col-4">
+      <input
+        class="form-control"
+        id="dishAmount"
+        placeholder=" "
+        type="number"
+        formControlName="dishAmount"
+      />
+      <label for="dishAmount">Số lượng</label>
+    </div>
+    <div class="order-btn-group col-md-2 col-4">
+      <span class="order-btn-item" (click)="onSubmit()"
+        ><i class="fas fa-check fa-lg btn btn-success"></i
+      ></span>
+      <span class="order-btn-item" (click)="onRemove()"
+        ><i class="fas fa-trash fa-lg btn btn-danger"></i
+      ></span>
+    </div>
+  </div>
+</form>
