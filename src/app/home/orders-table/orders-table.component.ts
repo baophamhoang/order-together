@@ -13,7 +13,11 @@ export class OrdersTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  isDiscountNegative(n: number) {
+    return n<0;
+  }
+
   @Input() ordersSource: Order[] = [];
-  displayedColumns: string[] = ['clientName', 'dishName','dishAmount', 'dishPrice']
+  displayedColumns: string[] = ['clientName', 'dishName','tienphaitra', 'discount']
 
 }

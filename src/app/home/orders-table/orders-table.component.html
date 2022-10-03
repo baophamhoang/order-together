@@ -1,7 +1,3 @@
-<div *ngFor="let item of ordersSource">
-  {{ item.clientName }}
-</div>
-
 <table mat-table [dataSource]="ordersSource" class="mat-elevation-z8">
   <!-- Position Column -->
   <ng-container matColumnDef="clientName">
@@ -11,22 +7,41 @@
 
   <!-- Name Column -->
   <ng-container matColumnDef="dishName">
-    <th mat-header-cell *matHeaderCellDef>dishName</th>
-    <td mat-cell *matCellDef="let element">{{ element.dishName }}</td>
+    <th mat-header-cell *matHeaderCellDef>Ăn gì</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.dishAmount }} {{ element.dishName }}
+    </td>
   </ng-container>
 
   <!-- Weight Column -->
-  <ng-container matColumnDef="dishAmount">
-    <th mat-header-cell *matHeaderCellDef>dishAmount</th>
-    <td mat-cell *matCellDef="let element">{{ element.dishAmount }}</td>
+  <ng-container matColumnDef="tienphaitra">
+    <th mat-header-cell *matHeaderCellDef>Số tiền phải trả</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.tienphaitra | number }} vnđ
+    </td>
   </ng-container>
 
   <!-- Symbol Column -->
-  <ng-container matColumnDef="dishPrice">
-    <th mat-header-cell *matHeaderCellDef>dishPrice</th>
-    <td mat-cell *matCellDef="let element">{{ element.dishPrice }}</td>
+  <ng-container matColumnDef="discount">
+    <th mat-header-cell *matHeaderCellDef>Discount</th>
+    <td
+      mat-cell
+      *matCellDef="let element"
+      [ngStyle]="
+        (isDiscountNegative(
+          element.dishPrice * element.dishAmount - element.tienphaitra
+        ) && { color: 'red' }) || { color: 'green' }
+      "
+    >
+      {{
+        element.dishPrice * element.dishAmount - element.tienphaitra | number
+      }}
+      vnđ
+    </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns">
+    Discount
+  </tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
